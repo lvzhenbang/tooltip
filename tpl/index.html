@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>scrollto</title>
+  <style>
+    html,body {
+      padding: 0;
+      margin: 0;
+    }
+    .tooltip {
+      display: none;
+      position: absolute;
+      width: auto;
+      max-width: 200px;
+      padding: .5em 1em;
+      font-size: .8rem;
+      color: #FFFFFF;
+      border-radius: 3px;
+      text-align: center;
+      background: #1E252B;
+      box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
+    }
+    .tooltip.active{
+      display: block;
+    }
+
+    .box {
+      padding: 1000px;
+    }
+    .demo {
+      width: 300px;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+  </style>
+</head>
+
+<body>
+  <div class="box">
+    <div class="demo" data-title="this is a demo" data-name="tooltip">demo</div>
+  </div>
+</body>
+<script>
+  var demo = document.querySelector('.demo');
+  document.addEventListener('DOMContentLoaded', function() {
+    demo.scrollIntoView({
+      block: 'center',
+      inline: 'center',
+      behavior: 'smooth'
+    });
+  });
+
+  var tooltip = new Tooltip(
+    demo,
+    {
+      content: 'Hey demo',
+      placement: 'left'
+    }
+  );
+</script>
+</html>

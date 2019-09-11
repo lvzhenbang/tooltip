@@ -12,6 +12,7 @@ class Tooltip {
     };
     this.container = this.getContainer();
     this.tooltip = null;
+    this.content = this.getContent();
     this.init();
     this.version = version;
   }
@@ -46,21 +47,20 @@ class Tooltip {
     this.container.style.position = 'relative';
   }
 
-  genTooltip() {
-    const content = this.getContent();
-    if (content) {
-      if (!this.tooltip) {
-        const tooltipEl = document.createElement('div');
+  genTooltip(val) {
+    if (!this.tooltip) {
+      const tooltipEl = document.createElement('div');
 
-        tooltipEl.classList.add('tooltip');
-        tooltipEl.innerText = content;
-        this.container.appendChild(tooltipEl);
-        this.tooltip = tooltipEl;
-      }
-      this.setTooltipStyle();
-    } else {
-      throw new Error('please add this.option.content or set data-title to the this.el');
+      tooltipEl.classList.add('tooltip');
+      tooltipEl.innerText = this.content;
+      this.container.appendChild(tooltipEl);
+      this.tooltip = tooltipEl;
     }
+
+    if (val) {
+      this.tooltip.innerText = val;
+    }
+    this.setTooltipStyle();
   }
 
   setTooltipStyle() {
@@ -237,15 +237,20 @@ class Tooltip {
 
   getContent() {
     if (this.options.content) {
-      return this.options.content;
+      this.setContent(this.options.content);
     }
 
-    const content = this.$el.dataset;
-    if (content && content.title) {
-      return content.title;
+    const data = this.$el.dataset;
+    if (data && data.content) {
+      return data.content;
     }
 
     return null;
+  }
+
+  setContent(val) {
+    this.content = val;
+    this.genTooltip(this.content);
   }
 
   triggerTooltip() {

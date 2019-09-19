@@ -76,8 +76,8 @@ class Tooltip {
       height: this.tooltip.offsetHeight,
     };
     const offset = {
-      x: Math.abs(elRect.width - tooltipRect.width) / 2,
-      y: Math.abs(elRect.height - tooltipRect.height) / 2,
+      x: (elRect.width - tooltipRect.width) / 2,
+      y: (elRect.height - tooltipRect.height) / 2,
     };
 
     if (this.options.placement === 'bottom') {

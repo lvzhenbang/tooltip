@@ -21,6 +21,7 @@
       color: #FFFFFF;
       border-radius: 3px;
       text-align: center;
+      white-space: nowrap;
       background: #1E252B;
       box-shadow: 0 0 2px rgba(0, 0, 0, 0.5);
     }
@@ -32,20 +33,25 @@
       padding: 1000px;
     }
     .demo {
-      width: 300px;
-      padding: 20px;
+      width: 60px;
+      padding: 10px;
+      text-align: center;
       border: 1px solid #000;
+    }
+    .demo-2 {
+      width: 500px;
+      margin-top: 60px;
     }
   </style>
 </head>
 
 <body>
   <div class="box">
-    <div class="demo" data-content="this is a demo">demo</div>
+    <div class="demo demo-1" data-content="this is a demo">demo</div>
+    <div class="demo demo-2" data-content="this is a demo">demo</div>
   </div>
 <script type="text/javascript" src="tooltip.min.js"></script></body>
 <script>
-  var demo = document.querySelector('.demo');
   document.addEventListener('DOMContentLoaded', function() {
     demo.scrollIntoView({
       block: 'center',
@@ -55,10 +61,18 @@
   });
 
   var tooltip = new Tooltip(
-    demo,
+    document.querySelector('.demo-1'),
     {
       content: 'Hey demo',
-      placement: 'left'
+      placement: 'bottom'
+    }
+  );
+
+  var tooltip = new Tooltip(
+    document.querySelector('.demo-2'),
+    {
+      content: 'Hey demo',
+      placement: 'bottom'
     }
   );
 </script>
